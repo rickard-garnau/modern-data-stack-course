@@ -1,11 +1,14 @@
 USE ROLE SYSADMIN;
 
-SELECT current_role();
+SELECT
+    current_role();
 
-SELECT current_user();
+SELECT
+    current_user();
 
 CREATE DATABASE IF NOT EXISTS ice_cream_db;
 
+USE DATABASE ice_cream_db;
 
 -- Create a table for ice cream flavors
 CREATE TABLE flavors (
