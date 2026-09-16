@@ -4,12 +4,21 @@ USE WAREHOUSE dev_wh;
 
 USE SCHEMA ice_cream_db.public;
 
-CREATE TABLE IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS suppliers (
+    supplier_id INT AUTOINCREMENT,
+    supplier_name STRING
+);
+
+CREATE TABLE IF NOT EXISTS flavor (
     flavor_id INT AUTOINCREMENT, -- each row will get a number sequentially
     flavor_name STRING,
     price DECIMAL(5, 2),
     PRIMARY KEY (flavor_id)
 );
+
+USE ROLE SYSADMIN;
+
+DROP TABLE suppliers;
 
 CREATE TABLE customers (
     customer_id INT AUTOINCREMENT,
