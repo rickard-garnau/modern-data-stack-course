@@ -8,10 +8,19 @@ SELECT
 
 CREATE DATABASE IF NOT EXISTS ice_cream_db;
 
+CREATE WAREHOUSE IF NOT EXISTS dev_wh
+WITH
+WAREHOUSE_SIZE = "XSMALL"
+AUTO_SUSPEND = 60
+AUTO_RESUME =TRUE
+INITIALLY_SUSPENDED = TRUE
+COMMENT = "Warehouse for development and analysis";
+SHOW warehouses;
+
 USE DATABASE ice_cream_db;
 
 -- Create a table for ice cream flavors
-CREATE TABLE flavors (
+CREATE TABLE IF NOT EXISTS flavors (
     flavor_id INT AUTOINCREMENT,
     flavor_name STRING,
     price DECIMAL(5, 2),
@@ -19,7 +28,7 @@ CREATE TABLE flavors (
 );
 
 -- Create a table for customers
-CREATE TABLE customers (
+CREATE TABLE IF NOT EXISTS customers (
     customer_id INT AUTOINCREMENT,
     customer_name STRING,
     email STRING,
@@ -27,7 +36,7 @@ CREATE TABLE customers (
 );
 
 -- Create a table for transactions
-CREATE TABLE transactions (
+CREATE TABLE IF NOT EXISTS transactions (
     transaction_id INT AUTOINCREMENT,
     customer_id INT,
     flavor_id INT,

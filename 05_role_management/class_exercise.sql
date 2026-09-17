@@ -1,1 +1,0 @@
-USE ROLE ice_cream_writer;
