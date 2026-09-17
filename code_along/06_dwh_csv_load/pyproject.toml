@@ -1,0 +1,7 @@
+[project]
+name = "06-dwh-csv-load"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.3"
+dependencies = []
