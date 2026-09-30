@@ -1,9 +1,10 @@
-with dim_occupation as (select * from {{ ref('dim_occupation') }})
+with src_occupation as (select * from {{ ref('src_occupation') }})
 
+-- we use aggregate function max() for deduplicate, but there are more alternative codes one can use for this purpose
 select
-    occupation_id,
+    {{ dbt_utils.generate_surrogate_key(['occupation']) }} as occupation_id,
     occupation,
-    occupation_group,
-    occupation_field
-from dim_occupation
-group by 
+    max(occupation_group) as occupation_group,
+    max(occupation_field) as occupation_field
+from src_occupation
+group by occupation

@@ -1,6 +1,6 @@
 sources:
-  - name: job_ads                          ← första argumentet i source()
+  - name: job_ads
     schema: staging
     tables:
-      - name: stg_ads                      ← andra argumentet i source()
-        identifier: technical_field_job_ads   ← det riktiga tabellnamnet i Snowflake
+      - name: stg_ads
+        identifier: technical_field_job_ads
