@@ -18,9 +18,14 @@ SELECT
     webpage_url,
     source_type,
     timestamp,
-    TO_CHAR(TO_TIMESTAMP(timestamp / 1000), 'YYYY-MM-DD HH24:MI:SS')
-        AS readable_timestamp
-FROM data_field_job_ads LIMIT 5;
+    TO_CHAR(
+        TO_TIMESTAMP(timestamp / 1000),
+        'YYYY-MM-DD HH24:MI:SS'
+    ) AS readable_timestamp
+FROM
+    data_field_job_ads
+LIMIT
+    5;
 
 SELECT
     scope_of_work__min,
@@ -33,4 +38,9 @@ SELECT
     employer__workplace,
     employer__name,
     employer__url
-FROM data_field_job_ads LIMIT 5;
+FROM
+    data_field_job_ads
+LIMIT
+    5;
+
+SHOW ROLES IN DATABASE;
