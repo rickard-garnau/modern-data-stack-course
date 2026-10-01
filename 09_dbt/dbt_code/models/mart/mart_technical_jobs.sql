@@ -1,4 +1,3 @@
--- this is an extract of the model
 
 with
     fct_job_ads as (select * from {{ ref('fct_job_ads') }}),
