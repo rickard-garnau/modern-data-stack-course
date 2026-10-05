@@ -6,3 +6,9 @@ setup_service_acc*
 dbt_packages/
 target/
 logs/
+dbt_packages/
+target/
+logs/
+__pycache__/
+*.pyc
+.tmp_dagster_home_*/
