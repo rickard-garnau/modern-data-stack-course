@@ -1,15 +1,16 @@
 with src_employer as (select * from {{ ref('src_employer') }})
 
 select
-    {{ dbt_utils.generate_surrogate_key(['employer_workplace', 'workplace_municipality']) }} as employer_id,
-    employer_workplace,
-    workplace_municipality,
-    max(employer_name) as employer_name,
-    max(employer_organization_number) as employer_organization_number,
-    max(workplace_street_address) as workplace_street_address,
-    max(workplace_region) as workplace_region,
-    max(workplace_postcode) as workplace_postcode,
-    max(workplace_city) as workplace_city,
-    max(workplace_country) as workplace_country
+    {{ dbt_utils.generate_surrogate_key(['employer_workplace', 'workplace_municipality']) }}
+    as employer_id,
+    max(coalesce(
+        employer_organization_number, 'saknar organisationsnummer'
+    )) as employer_organization_number,
+    max(coalesce(employer_name, 'namn ej angiven')) as employer_name,
+    max(coalesce(employer_workplace, 'plats ej angiven')) as employer_workplace,
+    max(coalesce(workplace_country, 'land ej angiven')) as workplace_country,
+    max(coalesce(workplace_region, 'region ej angiven')) as workplace_region,
+    max(coalesce(employer_url, 'webbplats ej angiven')) as employer_url,
+    max(coalesce({{ capitalize_first_letter("coalesce(src_employer.workplace_city, src_employer.workplace_municipality)") }}, 'stad ej angiven')) as workplace_city
 from src_employer
 group by employer_workplace, workplace_municipality
